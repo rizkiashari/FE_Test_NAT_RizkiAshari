@@ -81,6 +81,21 @@ const HorizontalMenu = () => {
         <MenuItem href='/' icon={<i className='tabler-smart-home' />}>
           Home
         </MenuItem>
+        <MenuItem href='/answer-two' icon={<i className='tabler-smart-home' />}>
+          Answer Two
+        </MenuItem>
+        <MenuItem href='/answer-three' icon={<i className='tabler-smart-home' />}>
+          Answer Three
+        </MenuItem>
+        <MenuItem href='/answer-four' icon={<i className='tabler-smart-home' />}>
+          Answer Four
+        </MenuItem>
+        <MenuItem href='/answer-five' icon={<i className='tabler-smart-home' />}>
+          Answer Five
+        </MenuItem>
+        <MenuItem href='/answer-six' icon={<i className='tabler-smart-home' />}>
+          Answer Six
+        </MenuItem>
         <MenuItem href='/about' icon={<i className='tabler-info-circle' />}>
           About
         </MenuItem>
