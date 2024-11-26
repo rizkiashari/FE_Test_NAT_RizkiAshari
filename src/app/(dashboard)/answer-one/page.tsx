@@ -6,12 +6,12 @@ import CardEmploye from '@/views/widgets/CardEmploye'
 export default function Page() {
   return (
     <>
-      <Typography variant='h3' className='mbe-2'>
+      <Typography variant='h2' className='mbe-3'>
         Soal 1: Komponen Slip Gaji
       </Typography>
       <Grid container spacing={5}>
-        {employees.map(employee => (
-          <Grid key={employee.employeeId} item xs={12} sm={6} md={4} lg={3}>
+        {employees.map((employee, idx) => (
+          <Grid key={idx} item xs={12} sm={6} md={4} lg={3}>
             <CardEmploye {...employee} />
           </Grid>
         ))}
