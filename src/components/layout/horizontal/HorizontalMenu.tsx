@@ -81,19 +81,22 @@ const HorizontalMenu = () => {
         <MenuItem href='/' icon={<i className='tabler-smart-home' />}>
           Home
         </MenuItem>
-        <MenuItem href='/answer-two' icon={<i className='tabler-smart-home' />}>
+        <MenuItem href='/answer-one' icon={<i className='tabler-box-multiple-1' />}>
+          Answer One
+        </MenuItem>
+        <MenuItem href='/answer-two' icon={<i className='tabler-box-multiple-2' />}>
           Answer Two
         </MenuItem>
-        <MenuItem href='/answer-three' icon={<i className='tabler-smart-home' />}>
+        <MenuItem href='/answer-three' icon={<i className='tabler-box-multiple-3' />}>
           Answer Three
         </MenuItem>
-        <MenuItem href='/answer-four' icon={<i className='tabler-smart-home' />}>
+        <MenuItem href='/answer-four' icon={<i className='tabler-box-multiple-4' />}>
           Answer Four
         </MenuItem>
-        <MenuItem href='/answer-five' icon={<i className='tabler-smart-home' />}>
+        <MenuItem href='/answer-five' icon={<i className='tabler-box-multiple-5' />}>
           Answer Five
         </MenuItem>
-        <MenuItem href='/answer-six' icon={<i className='tabler-smart-home' />}>
+        <MenuItem href='/answer-six' icon={<i className='tabler-box-multiple-6' />}>
           Answer Six
         </MenuItem>
         <MenuItem href='/about' icon={<i className='tabler-info-circle' />}>
