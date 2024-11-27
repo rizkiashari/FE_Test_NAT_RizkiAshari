@@ -89,19 +89,7 @@ const VerticalMenu = ({ scrollMenu }: Props) => {
         <MenuItem href='/answer-six' icon={<i className='tabler-box-multiple-6' />}>
           Answer Six
         </MenuItem>
-        <MenuItem href='/about' icon={<i className='tabler-info-circle' />}>
-          About
-        </MenuItem>
       </Menu>
-      {/* <Menu
-        popoutMenuOffset={{ mainAxis: 23 }}
-        menuItemStyles={menuItemStyles(verticalNavOptions, theme)}
-        renderExpandIcon={({ open }) => <RenderExpandIcon open={open} transitionDuration={transitionDuration} />}
-        renderExpandedMenuItemIcon={{ icon: <i className='tabler-circle text-xs' /> }}
-        menuSectionStyles={menuSectionStyles(verticalNavOptions, theme)}
-      >
-        <GenerateVerticalMenu menuData={menuData(dictionary)} />
-      </Menu> */}
     </ScrollWrapper>
   )
 }
