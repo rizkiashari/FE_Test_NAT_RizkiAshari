@@ -32,7 +32,7 @@ const ApexBarChart: FC<ApexBarChar> = ({ categories, data, title, subTitle }) =>
       toolbar: { show: false }
     },
     colors: ['#00cfe8'],
-    dataLabels: { enabled: false },
+    dataLabels: { enabled: true },
     plotOptions: {
       bar: {
         borderRadius: 8,

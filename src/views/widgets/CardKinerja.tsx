@@ -23,7 +23,8 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4
+  p: 8,
+  borderRadius: 2
 }
 
 const CardKinerja: FC<ReviewKinerjaType> = ({ employeeName, feedback, scores, reviewPeriod }) => {
@@ -56,6 +57,7 @@ const CardKinerja: FC<ReviewKinerjaType> = ({ employeeName, feedback, scores, re
             slots={{ backdrop: Backdrop }}
             open={showModal}
             onClose={() => setShowModal(false)}
+            keepMounted
           >
             <Box sx={style}>
               <Typography variant='h5' className='mbe-5'>
