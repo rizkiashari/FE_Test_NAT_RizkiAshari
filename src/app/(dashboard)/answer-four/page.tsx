@@ -31,7 +31,7 @@ export default function Page() {
   const [isLoading, setLoading] = useState(false)
 
   const [data, setData] = useState<InputFormType>({
-    employeeId: undefined,
+    employeeId: 0,
     destination: '',
     reason: ''
   })
@@ -85,7 +85,7 @@ export default function Page() {
 
     setTimeout(() => {
       setData({
-        employeeId: undefined,
+        employeeId: 0,
         destination: '',
         reason: ''
       })
@@ -127,6 +127,7 @@ export default function Page() {
                 value={data.employeeId}
                 onChange={e => setData({ ...data, employeeId: e.target.value as number })}
               >
+                <MenuItem value='0'>Pilih Karyawan</MenuItem>
                 {employees.map((employee, index) => (
                   <MenuItem key={index} value={employee.employeeId}>
                     {employee.employeeName}

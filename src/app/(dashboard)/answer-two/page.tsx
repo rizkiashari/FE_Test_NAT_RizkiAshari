@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 
 import { Typography, Input, Grid, Select, MenuItem, Alert } from '@mui/material'
 
@@ -77,6 +77,15 @@ export default function Page() {
       setMessageSuccess('')
     }, 2200)
   }
+
+  useEffect(() => {
+    setError({
+      employeeName: '',
+      position: '',
+      grossSalary: '',
+      deductions: ''
+    })
+  }, [data])
 
   return (
     <>

@@ -44,7 +44,7 @@ const CardKinerja: FC<ReviewKinerjaType> = ({ employeeName, feedback, scores, re
           {reviewPeriod}
         </Typography>
         <Typography variant='body2' className='mt-2'>
-          <strong>Rata-rata Skor:</strong> {Object.values(scores).reduce((acc, curr) => acc + curr, 0) / 4}
+          <strong>Rata-rata Skor:</strong> {(Object.values(scores).reduce((acc, curr) => acc + curr, 0) / 4).toFixed(2)}
         </Typography>
         <Button variant='contained' color='primary' onClick={() => setShowModal(true)} className='mt-2'>
           Lihat Feedback
