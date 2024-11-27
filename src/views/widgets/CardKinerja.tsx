@@ -19,7 +19,9 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 700,
+
+  height: '75%',
+  overflowY: 'auto',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -59,7 +61,7 @@ const CardKinerja: FC<ReviewKinerjaType> = ({ employeeName, feedback, scores, re
             onClose={() => setShowModal(false)}
             keepMounted
           >
-            <Box sx={style}>
+            <Box sx={style} className='md:w-[60%] lg:w-[50%] sm:w-[90%] w-[90%]'>
               <Typography variant='h5' className='mbe-5'>
                 Feedback {employeeName}
               </Typography>
