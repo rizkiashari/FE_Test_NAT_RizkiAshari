@@ -17,9 +17,10 @@ import Paper from '@mui/material/Paper'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import MenuList from '@mui/material/MenuList'
 import Typography from '@mui/material/Typography'
-import Divider from '@mui/material/Divider'
-import MenuItem from '@mui/material/MenuItem'
-import Button from '@mui/material/Button'
+
+// import Divider from '@mui/material/Divider'
+// import MenuItem from '@mui/material/MenuItem'
+// import Button from '@mui/material/Button'
 
 // Hook Imports
 import { useSettings } from '@core/hooks/useSettings'
@@ -62,10 +63,10 @@ const UserDropdown = () => {
     setOpen(false)
   }
 
-  const handleUserLogout = async () => {
-    // Redirect to login page
-    router.push('/login')
-  }
+  // const handleUserLogout = async () => {
+  //   // Redirect to login page
+  //   router.push('/login')
+  // }
 
   return (
     <>
@@ -111,7 +112,7 @@ const UserDropdown = () => {
                       <Typography variant='caption'>admin@vuexy.com</Typography>
                     </div>
                   </div>
-                  <Divider className='mlb-1' />
+                  {/* <Divider className='mlb-1' />
                   <MenuItem className='mli-2 gap-3' onClick={e => handleDropdownClose(e)}>
                     <i className='tabler-user' />
                     <Typography color='text.primary'>My Profile</Typography>
@@ -140,7 +141,7 @@ const UserDropdown = () => {
                     >
                       Logout
                     </Button>
-                  </div>
+                  </div> */}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
