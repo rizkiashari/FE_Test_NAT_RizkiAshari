@@ -117,6 +117,7 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
         cell: ({ row }) => <Typography>{row.original.returnDate}</Typography>
       }),
       columnHelper.accessor('reason', {
+        enableSorting: false,
         header: 'Alasan',
         cell: ({ row }) => <Typography>{row.original.reason}</Typography>
       }),
@@ -124,8 +125,8 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
         header: 'Action',
         cell: ({ row }) => (
           <div className='flex items-center'>
-            <IconButton onClick={() => setData(data?.filter(product => product.id !== row.original.id))}>
-              <i className='tabler-trash text-textSecondary' />
+            <IconButton onClick={() => {}}>
+              <i className='text-primary tabler tabler-eye' />
             </IconButton>
           </div>
         ),
@@ -145,7 +146,7 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
     },
     initialState: {
       pagination: {
-        pageSize: 10
+        pageSize: 2
       }
     },
     onRowSelectionChange: setRowSelection,

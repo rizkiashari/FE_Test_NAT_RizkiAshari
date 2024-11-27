@@ -87,6 +87,22 @@ Tampilkan detail perjalanan dinas di dalam Modal saat salah satu baris diklik.
                 departureDate: '2024-11-10',
                 returnDate: '2024-11-12',
                 reason: 'Konferensi tahunan'
+              },
+              {
+                id: 3,
+                employeeName: 'John Smith',
+                destination: 'Jakarta',
+                departureDate: '2024-11-10',
+                returnDate: '2024-11-12',
+                reason: 'Konferensi tahunan'
+              },
+              {
+                id: 4,
+                employeeName: 'John Smith',
+                destination: 'Jakarta',
+                departureDate: '2024-11-10',
+                returnDate: '2024-11-12',
+                reason: 'Konferensi tahunan'
               }
             ]}
           />
