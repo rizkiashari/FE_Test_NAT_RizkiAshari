@@ -70,7 +70,26 @@ Tampilkan detail perjalanan dinas di dalam Modal saat salah satu baris diklik.
         </CardContent>
 
         <CardContent>
-          <DinasTable tableData={[]} />
+          <DinasTable
+            tableData={[
+              {
+                id: 1,
+                employeeName: 'Jane Doe',
+                destination: 'Surabaya',
+                departureDate: '2024-11-01',
+                returnDate: '2024-11-05',
+                reason: 'Meeting klien'
+              },
+              {
+                id: 2,
+                employeeName: 'John Smith',
+                destination: 'Jakarta',
+                departureDate: '2024-11-10',
+                returnDate: '2024-11-12',
+                reason: 'Konferensi tahunan'
+              }
+            ]}
+          />
         </CardContent>
       </Card>
     </>
