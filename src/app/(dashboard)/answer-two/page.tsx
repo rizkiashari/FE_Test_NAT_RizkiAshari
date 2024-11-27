@@ -147,6 +147,7 @@ export default function Page() {
               loading={isLoading}
               variant='contained'
               color='primary'
+              loadingIndicator='Loading...'
             >
               Simpan
             </LoadingButton>

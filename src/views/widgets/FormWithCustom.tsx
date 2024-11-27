@@ -4,8 +4,8 @@ import { FormControl, FormHelperText, InputLabel } from '@mui/material'
 
 type FormWithCustomProps = {
   name: string
-  error: string
-  label: string
+  error?: string
+  label?: string
   children: ReactNode // this is a type that can accept any JSX element
 }
 
