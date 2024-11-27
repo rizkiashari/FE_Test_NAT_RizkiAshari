@@ -13,10 +13,7 @@ import type { EmployesType } from '@/types/employes'
 const CardEmploye: FC<EmployesType> = ({ employeeName, position, grossSalary, deductions, netSalary }) => {
   return (
     <Card>
-      <CardMedia
-        image={`https://picsum.photos/200?random=${Math.floor(Math.random() * 1000)}`}
-        className='bs-[140px]'
-      />
+      <CardMedia image={`https://i.pravatar.cc/150?u=${Math.floor(Math.random() * 1000)}`} className='bs-[140px]' />
       <CardContent className='relative'>
         <Typography variant='h4' className='mt-1 line-clamp-1'>
           {employeeName}
