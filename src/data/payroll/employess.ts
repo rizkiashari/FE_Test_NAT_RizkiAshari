@@ -9,7 +9,7 @@ export const employees = [
   },
   {
     employeeId: 23,
-    employeeName: 'Emily Johnson',
+    employeeName: 'Jane Doe',
     position: 'Marketing Specialist',
     grossSalary: 18_000_000,
     deductions: 2_000_000,

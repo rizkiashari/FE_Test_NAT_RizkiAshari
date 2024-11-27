@@ -7,11 +7,7 @@ import { useState, useMemo } from 'react'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 
-// import Chip from '@mui/material/Chip'
-// import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
-
-// import { styled } from '@mui/material/styles'
 import TablePagination from '@mui/material/TablePagination'
 
 // Third-party Imports
@@ -23,58 +19,56 @@ import {
   useReactTable,
   getFilteredRowModel,
   getFacetedRowModel,
-  getFacetedUniqueValues,
-  getFacetedMinMaxValues,
   getPaginationRowModel,
   getSortedRowModel
 } from '@tanstack/react-table'
 import type { ColumnDef } from '@tanstack/react-table'
 
-// Type Imports
-// import type { ThemeColor } from '@core/types'
+import { Backdrop, Box, CardContent, MenuItem, Modal, Select } from '@mui/material'
 
-// Component Imports
-// import OptionMenu from '@core/components/option-menu'
+import moment from 'moment'
+
 import TablePaginationComponent from '@components/TablePaginationComponent'
 
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
+import FormWithCustom from './FormWithCustom'
+import { employees } from '@/data/payroll/employess'
 
-// type UserRoleType = {
-//   [key: string]: { icon: string; color: string }
-// }
-
-// type UserStatusType = {
-//   [key: string]: ThemeColor
-// }
-
-// Styled Components
-// const Icon = styled('i')({})
-
-// // Vars
-// const userRoleObj: UserRoleType = {
-//   admin: { icon: 'tabler-crown', color: 'error' },
-//   author: { icon: 'tabler-device-desktop', color: 'warning' },
-//   editor: { icon: 'tabler-edit', color: 'info' },
-//   maintainer: { icon: 'tabler-chart-pie', color: 'success' },
-//   subscriber: { icon: 'tabler-user', color: 'primary' }
-// }
-
-// const userStatusObj: UserStatusType = {
-//   active: 'success',
-//   pending: 'warning',
-//   inactive: 'secondary'
-// }
-
-// Column Definitions
 const columnHelper = createColumnHelper<any>()
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+
+  height: '75%',
+  overflowY: 'auto',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 8,
+  borderRadius: 2
+}
+
+type SelectRowType = {
+  employeeName: string
+  destination: string
+  departureDate: string
+  returnDate: string
+  reason: string
+}
 
 const DinasTable = ({ tableData }: { tableData: any[] }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
-  const [data, setData] = useState(...[tableData])
-  const [filteredData, setFilteredData] = useState(data)
+  const [data] = useState(...[tableData])
+  const [filteredData] = useState(data)
   const [globalFilter, setGlobalFilter] = useState('')
+
+  const [showDetail, setShowDetail] = useState(false)
+  const [selectRow, setSelectRow] = useState<SelectRowType | undefined>()
 
   const columns = useMemo<ColumnDef<any, any>[]>(
     () => [
@@ -107,14 +101,14 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
         enableSorting: false,
         cell: ({ row }) => (
           <Typography className='capitalize' color='text.primary'>
-            {row.original.departureDate}
+            {moment(row.original.departureDate).format('DD MMMM YYYY')}
           </Typography>
         )
       }),
       columnHelper.accessor('returnDate', {
         header: 'Tanggal Kepulangan',
         enableSorting: false,
-        cell: ({ row }) => <Typography>{row.original.returnDate}</Typography>
+        cell: ({ row }) => <Typography>{moment(row.original.returnDate).format('DD MMMM YYYY')}</Typography>
       }),
       columnHelper.accessor('reason', {
         enableSorting: false,
@@ -125,7 +119,12 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
         header: 'Action',
         cell: ({ row }) => (
           <div className='flex items-center'>
-            <IconButton onClick={() => {}}>
+            <IconButton
+              onClick={() => {
+                setShowDetail(true)
+                setSelectRow(row.original)
+              }}
+            >
               <i className='text-primary tabler tabler-eye' />
             </IconButton>
           </div>
@@ -146,7 +145,7 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
     },
     initialState: {
       pagination: {
-        pageSize: 2
+        pageSize: 10
       }
     },
     onRowSelectionChange: setRowSelection,
@@ -155,14 +154,34 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getFacetedRowModel: getFacetedRowModel(),
-    getFacetedUniqueValues: getFacetedUniqueValues(),
-    getFacetedMinMaxValues: getFacetedMinMaxValues()
+    getFacetedRowModel: getFacetedRowModel()
   })
 
   return (
     <>
       <Card>
+        <CardContent className='flex justify-end'>
+          <div className='w-[20rem]'>
+            <FormWithCustom name='employeName' label='Nama Karyawan'>
+              <Select
+                id='employeName'
+                name='employeName'
+                onChange={e => {
+                  setGlobalFilter(String(e.target.value))
+                }}
+                value={globalFilter}
+              >
+                <MenuItem value=''>All</MenuItem>
+                {employees.map((employe, index) => (
+                  <MenuItem key={index} value={employe.employeeName}>
+                    {employe.employeeName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormWithCustom>
+          </div>
+        </CardContent>
+
         <div className='overflow-x-auto'>
           <table className={tableStyles.table}>
             <thead>
@@ -176,7 +195,7 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
                 </tr>
               ))}
             </thead>
-            {/* {table.getFilteredRowModel().rows.length === 0 ? (
+            {table.getFilteredRowModel().rows.length === 0 ? (
               <tbody>
                 <tr>
                   <td colSpan={table.getVisibleFlatColumns().length} className='text-center'>
@@ -184,24 +203,25 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
                   </td>
                 </tr>
               </tbody>
-            ) : ( */}
-            <tbody>
-              {table
-                .getRowModel()
-                .rows.slice(0, table.getState().pagination.pageSize)
-                .map(row => {
-                  return (
-                    <tr key={row.id} className={classnames({ selected: row.getIsSelected() })}>
-                      {row.getVisibleCells().map(cell => (
-                        <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-                      ))}
-                    </tr>
-                  )
-                })}
-            </tbody>
-            {/* )} */}
+            ) : (
+              <tbody>
+                {table
+                  .getRowModel()
+                  .rows.slice(0, table.getState().pagination.pageSize)
+                  .map(row => {
+                    return (
+                      <tr key={row.id} className={classnames({ selected: row.getIsSelected() })}>
+                        {row.getVisibleCells().map(cell => (
+                          <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                        ))}
+                      </tr>
+                    )
+                  })}
+              </tbody>
+            )}
           </table>
         </div>
+
         <TablePagination
           component={() => <TablePaginationComponent table={table} />}
           count={table.getFilteredRowModel().rows.length}
@@ -212,6 +232,39 @@ const DinasTable = ({ tableData }: { tableData: any[] }) => {
           }}
         />
       </Card>
+
+      {showDetail && (
+        <Modal
+          aria-labelledby='transition-modal-title'
+          aria-describedby='transition-modal-description'
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          open={showDetail}
+          onClose={() => {
+            setShowDetail(false)
+            setSelectRow(undefined)
+          }}
+          keepMounted
+        >
+          <Box sx={style} className='md:w-[60%] lg:w-[50%] sm:w-[90%] w-[90%]'>
+            <Typography variant='h5' className='mbe-5'>
+              Detail Dinas {selectRow?.employeeName}
+            </Typography>
+            <Typography variant='body1'>
+              <strong>Tujuan:</strong> {selectRow?.destination}
+            </Typography>
+            <Typography variant='body1'>
+              <strong>Tanggal Keberangkatan:</strong> {moment(selectRow?.departureDate).format('DD MMMM YYYY')}
+            </Typography>
+            <Typography variant='body1'>
+              <strong>Tanggal Kepulangan:</strong> {moment(selectRow?.returnDate).format('DD MMMM YYYY')}
+            </Typography>
+            <Typography variant='body1'>
+              <strong>Alasan:</strong> {selectRow?.reason}
+            </Typography>
+          </Box>
+        </Modal>
+      )}
     </>
   )
 }
