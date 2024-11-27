@@ -6,6 +6,7 @@ import { Card, CardContent, MenuItem, Select, Typography } from '@mui/material'
 
 import { employees } from '@/data/payroll/employess'
 import FormWithCustom from '@/views/widgets/FormWithCustom'
+import DinasTable from '@/views/widgets/DinasTable'
 
 // import DebouncedInput from '@/views/widgets/DebouncedInput'
 
@@ -66,6 +67,10 @@ Tampilkan detail perjalanan dinas di dalam Modal saat salah satu baris diklik.
               </Select>
             </FormWithCustom>
           </div>
+        </CardContent>
+
+        <CardContent>
+          <DinasTable />
         </CardContent>
       </Card>
     </>
