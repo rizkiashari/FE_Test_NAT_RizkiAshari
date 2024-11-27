@@ -67,7 +67,7 @@ const userStatusObj: UserStatusType = {
 // Column Definitions
 const columnHelper = createColumnHelper<any>()
 
-const DinasTable = ({ tableData }: { tableData?: any[] }) => {
+const DinasTable = ({ tableData }: { tableData: any[] }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState(...[tableData])
@@ -77,7 +77,7 @@ const DinasTable = ({ tableData }: { tableData?: any[] }) => {
   const columns = useMemo<ColumnDef<any, any>[]>(
     () => [
       columnHelper.accessor('fullName', {
-        header: 'User',
+        header: 'Nama Karyawan',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
             <div className='flex flex-col'>
@@ -90,7 +90,7 @@ const DinasTable = ({ tableData }: { tableData?: any[] }) => {
         )
       }),
       columnHelper.accessor('role', {
-        header: 'Role',
+        header: 'Tujuan',
         cell: ({ row }) => (
           <div className='flex items-center gap-2'>
             <Icon
@@ -104,7 +104,7 @@ const DinasTable = ({ tableData }: { tableData?: any[] }) => {
         )
       }),
       columnHelper.accessor('currentPlan', {
-        header: 'Plan',
+        header: 'Tanggal Keberangkatan',
         cell: ({ row }) => (
           <Typography className='capitalize' color='text.primary'>
             {row.original.currentPlan}
@@ -112,11 +112,11 @@ const DinasTable = ({ tableData }: { tableData?: any[] }) => {
         )
       }),
       columnHelper.accessor('billing', {
-        header: 'Billing',
+        header: 'Tanggal Kepulangan',
         cell: ({ row }) => <Typography>{row.original.billing}</Typography>
       }),
       columnHelper.accessor('status', {
-        header: 'Status',
+        header: 'Alasan',
         cell: ({ row }) => (
           <div className='flex items-center gap-3'>
             <Chip
@@ -228,7 +228,7 @@ const DinasTable = ({ tableData }: { tableData?: any[] }) => {
             )} */}
           </table>
         </div>
-        {/* <TablePagination
+        <TablePagination
           component={() => <TablePaginationComponent table={table} />}
           count={table.getFilteredRowModel().rows.length}
           rowsPerPage={table.getState().pagination.pageSize}
@@ -236,7 +236,7 @@ const DinasTable = ({ tableData }: { tableData?: any[] }) => {
           onPageChange={(_, page) => {
             table.setPageIndex(page)
           }}
-        /> */}
+        />
       </Card>
     </>
   )

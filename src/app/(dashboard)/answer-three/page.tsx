@@ -70,7 +70,7 @@ Tampilkan detail perjalanan dinas di dalam Modal saat salah satu baris diklik.
         </CardContent>
 
         <CardContent>
-          <DinasTable />
+          <DinasTable tableData={[]} />
         </CardContent>
       </Card>
     </>
